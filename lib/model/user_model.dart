@@ -24,7 +24,7 @@ class UserModel {
       uid: data['uid'],
       name: data['name'],
       status: data['status'],
-      createAt: data['createsAt']
+      createAt: data['createdAt']
       
     );
   }

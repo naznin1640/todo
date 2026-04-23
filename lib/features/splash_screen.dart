@@ -15,13 +15,13 @@ class _SplashScreenState extends State<SplashScreen> {
   String?uid;
   String?token;
 
-  getData() async{
+  getData()async {
 
     SharedPreferences _pref =await SharedPreferences.getInstance();
-   token = await _pref.getString('token');
-   name = await _pref.getString('name');
-   email = await _pref.getString('email');
-   uid = await _pref.getString('uid');
+   token =  _pref.getString('token');
+   name =  _pref.getString('name');
+   email =  _pref.getString('email');
+   uid =  _pref.getString('uid');
 
   }
   @override
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if(token == null){
       Navigator.pushNamed(context, '/');
     }else{
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, '/home');
     }
   }
   @override

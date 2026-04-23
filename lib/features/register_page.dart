@@ -39,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
       final userdata = await _authServices.registerUser(_userModel);
 
       if (userdata != null) {
-        if (!context.mounted) return;
+        if (!mounted) return;
         Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
       }
     } on FirebaseAuthException catch (e) {
@@ -47,6 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
         _isLoading = false;
       });
       List err = e.toString().split('/');
+        if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(err[1])));

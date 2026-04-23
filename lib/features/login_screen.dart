@@ -26,14 +26,21 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     try {
-      await Future.delayed(Duration(seconds: 3));
-      final data = await _authServices.registerUser(_userModel);
+      final data = await _authServices.loginUser(
+        UserModel(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim()
+        )
+      );
 
       if (data != null) {
-        if (!mounted) return;
+        setState(() {
+          _isLoading = false;
+        });
+        if(!mounted) return;
         Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-      }
-    } on FirebaseAuthException catch (e) {
+    }
+    }on FirebaseAuthException catch (e) {
       setState(() {
         _isLoading = false;
       });
@@ -117,18 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 10),
                     InkWell(
-                      onTap: () async {
-                        UserCredential Userdata = await FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                            );
-                        if (!context.mounted) return;
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          '/home',
-                          (route) => false,
-                        );
+                      onTap: ()  {
+                        if(_loginKey.currentState!.validate()){
+                          _login();
+                        }
                       },
                       child: Container(
                         height: 48,

@@ -39,7 +39,7 @@ class TodoHome extends ConsumerWidget {
             leading: Checkbox(
               value: todoProvider[index].completed,
               onChanged: (value) {
-                ref.read(todoNotifierProvider.notifier).toogledTodo(index);
+                ref.read(todoNotifierProvider.notifier).toggleTodo(index);
               },
             ),
             trailing: Visibility(

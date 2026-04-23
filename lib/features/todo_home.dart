@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todos/todo_model.dart';
+import 'package:todos/model/todo_model.dart';
+import 'package:todos/services/auth_services.dart';
 import 'package:todos/todo_provider.dart';
 
 class TodoHome extends ConsumerWidget {
@@ -18,7 +18,7 @@ class TodoHome extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-              FirebaseAuth.instance.signOut().then((value) {
+              AuthServices().logout().then((value) {
                 if (!context.mounted) return;
                 Navigator.pushNamedAndRemoveUntil(
                   context,

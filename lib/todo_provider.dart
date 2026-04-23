@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todos/todo_model.dart';
+import 'package:todos/model/todo_model.dart';
 
 class TodoNotifier extends Notifier<List<Todo>> {
   @override
